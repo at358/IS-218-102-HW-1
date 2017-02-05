@@ -28,19 +28,19 @@
         <h1>Product Discount Calculator</h1>
 
         <label>Product Description:</label>
-        <span><?php echo $product_description_escaped; ?></span><br>
+        <span><?php echo $product_description; ?></span><br>
 
         <label>List Price:</label>
-        <span><?php echo $list_price_formatted; ?></span><br>
+        <span><?php echo $list_price; ?></span><br>
 
         <label>Standard Discount:</label>
-        <span><?php echo $discount_percent_formatted; ?></span><br>
+        <span><?php echo $discount_percent; ?></span><br>
 
         <label>Discount Amount:</label>
-        <span><?php echo $discount_formatted; ?></span><br>
+        <span><?php echo $discount; ?></span><br>
 
         <label>Discount Price:</label>
-        <span><?php echo $discount_price_formatted; ?></span><br>
+        <span><?php echo $discount_price; ?></span><br>
     </main>
 </body>
 </html>
