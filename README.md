@@ -1,45 +1,46 @@
-<head>
-<meta charset="utf-8">
-<title>Calculator</title>
-</head>
-<body>
-<form method="post" attribute="post" action="disp_form.php">
-<p>First Value:<br/>
-<input type="text" id="first" name="first"></p>
-<p>Second Value:<br/>
-<input type="text" id="second" name="second"></p>
-<input type="radio" name="group1" id="add" value="add" checked="true"><p>+</p><br/>
-<input type="radio" name="group1" id="subtract" value="subtract"><p>-</p><br/>
-<input type="radio" name="group1" id="times" value="times"><p>x</p><br/>
-<input type="radio" name="group1" id="divide" value="divide"><p>/</p><br/>
-<p></p>
-<button type="submit" name="answer" id="answer" value="answer">Calculate</button>
-</form>
-</body>
-</html>
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Answer</title>
+    <title>Product Discount Calculator</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p>The answer is: 
-<?php
-if($_POST['group1'] == add) {
-echo "$first + $second";
-}
-else if($_POST['group1'] == subtract) {
-echo "$first - $second";
-}
-else if($_POST['group1'] == times) {
-echo "$first * $second";
-}
-else($_POST['group1'] == divide) {
-echo "$first / $second";
-}
-?>
-</p> 
+    <main>
+        <h1>Product Discount Calculator</h1>
+
+        <label>Product Description:</label>
+        <span><?php echo $product_description_escaped; ?></span><br>
+
+        <label>List Price:</label>
+        <span><?php echo $list_price_formatted; ?></span><br>
+
+        <label>Standard Discount:</label>
+        <span><?php echo $discount_percent_formatted; ?></span><br>
+
+        <label>Discount Amount:</label>
+        <span><?php echo $discount_formatted; ?></span><br>
+
+        <label>Discount Price:</label>
+        <span><?php echo $discount_price_formatted; ?></span><br>
+    </main>
 </body>
 </html>
+<?php
+    // get the data from the form
+    $product_description = $_POST['product_description'];
+    $list_price = $_POST['list_price'];
+    $discount_percent = $_POST['discount_percent'];
+    
+    // calculate the discount
+    $discount = $list_price * $discount_percent * .01;
+    $discount_price = $list_price - $discount;
+    
+    // apply currency formatting to the dollar and percent amounts
+    $list_price_formatted = "$".number_format($list_price, 2);
+    $discount_percent_formatted = $discount_percent."%";
+    $discount_formatted = "$".number_format($discount, 2);
+    $discount_price_formatted = "$".number_format($discount_price, 2);            
+    
+    // escape the unformatted input
+    $product_description_escaped = htmlspecialchars($product_description);
+?>
